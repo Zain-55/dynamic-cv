@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Mail, MapPin, Linkedin, GraduationCap, Languages, Heart, ExternalLink } from 'lucide-react'
+import { Mail, MapPin, Linkedin, ExternalLink } from 'lucide-react'
 import type { ResumeData } from '@/app/type/resume'
 
 export function ResumePreview({ data }: { data: ResumeData }) {
