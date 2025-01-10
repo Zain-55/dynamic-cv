@@ -50,21 +50,21 @@ export function ResumeForm({ onSubmit }: { onSubmit: (data: ResumeData) => void 
     }))
   }
 
-  const addListItem = (field: keyof ResumeData, initialValue: any) => {
+  const addListItem = (field: keyof ResumeData, initialValue: unknown) => {
     setFormData(prev => ({
       ...prev,
       [field]: Array.isArray(prev[field])
-        ? [...(prev[field] as any[]), initialValue]
-        : { ...prev[field], ...initialValue }
+        ? [...(prev[field] as unknown[]), initialValue]
+        : { ...prev[field], ...(typeof initialValue === 'object' ? initialValue : {}) }
     }))
   }
 
-  const updateListItem = (field: keyof ResumeData, index: number, value: any) => {
+  const updateListItem = (field: keyof ResumeData, index: number, value: unknown) => {
     setFormData(prev => ({
       ...prev,
       [field]: Array.isArray(prev[field])
-        ? (prev[field] as any[]).map((item, i) => i === index ? value : item)
-        : { ...prev[field], ...value }
+        ? (prev[field] as unknown[]).map((item, i) => i === index ? value : item)
+        : prev[field]
     }))
   }
 
@@ -72,7 +72,7 @@ export function ResumeForm({ onSubmit }: { onSubmit: (data: ResumeData) => void 
     setFormData(prev => ({
       ...prev,
       [field]: Array.isArray(prev[field])
-        ? (prev[field] as any[]).filter((_, i) => i !== index)
+        ? (prev[field] as number[]).filter((_, i) => i !== index)
         : prev[field]
     }))
   }
